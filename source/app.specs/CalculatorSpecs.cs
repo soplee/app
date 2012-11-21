@@ -78,7 +78,8 @@ namespace app.specs
 
       It should_run_a_query = () =>
         command.received(x => x.ExecuteNonQuery());
-
+     
+     
       static int result;
       static IDbConnection connection;
       static IDbCommand command;
@@ -92,5 +93,20 @@ namespace app.specs
       It should_throw_an_argument_exception = () =>
         spec.exception_thrown.ShouldBeAn<ArgumentException>();
     }
+
+      
+      public class when_subtracting_two_numbers : concern 
+      {  
+        //act
+        Because b = () =>
+        result = sut.subtract(3,2);
+
+          private It should_be_equal_number = () =>
+                                              result.ShouldEqual(1);
+
+
+        static int result;
+      }
+
   }
 }

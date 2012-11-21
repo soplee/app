@@ -1,2 +1,2 @@
 [Core]
-our_setting = This is a setting
+our_setting = #<Configatron::Store:0x2a3b580>
