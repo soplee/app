@@ -2,19 +2,19 @@
 {
   public class WebFormsDisplayEngine : IDisplayInformation
   {
-    ICreateViews view_factory;
+    IViewsRegistry _viewRegistryFactory;
     IGetTheCurrentlyExecutingRequest current_request_resolution;
 
 
-    public WebFormsDisplayEngine(ICreateViews view_factory, IGetTheCurrentlyExecutingRequest current_request_resolution)
+    public WebFormsDisplayEngine(IViewsRegistry _viewRegistryFactory, IGetTheCurrentlyExecutingRequest current_request_resolution)
     {
-      this.view_factory = view_factory;
+      this._viewRegistryFactory = _viewRegistryFactory;
       this.current_request_resolution = current_request_resolution;
     }
 
     public void display<PresentationModel>(PresentationModel model)
     {
-      view_factory.create_view_that_can_render(model).ProcessRequest(current_request_resolution());
+      _viewRegistryFactory.find_view_that_can_render(model).ProcessRequest(current_request_resolution());
     }
   }
 }

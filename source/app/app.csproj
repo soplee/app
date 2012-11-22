@@ -79,7 +79,7 @@
   <ItemGroup>
     <Compile Include="Calculator.cs" />
     <Compile Include="web\core\aspnet\ICreateAspxPageInstances.cs" />
-    <Compile Include="web\core\aspnet\ICreateViews.cs" />
+    <Compile Include="web\core\aspnet\IViewsRegistry.cs" />
     <Compile Include="web\core\aspnet\IGetTheCurrentlyExecutingRequest.cs" />
     <Compile Include="web\core\aspnet\WebFormsDisplayEngine.cs" />
     <Compile Include="web\core\IDisplayInformation.cs" />
