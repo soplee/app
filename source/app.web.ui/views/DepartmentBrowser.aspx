@@ -9,7 +9,7 @@ CodeFile="DepartmentBrowser.aspx.cs"
               <% foreach (var department in this.model)
                  { %>            
               <tr class="ListItem">
-               <td><a href='subdepartments/<%= department.id + "/view.iqmetrix" %>'>"><%= department.name %></a></td>
+               <td><a href='/subdepartments/<%= department.id + "/view.iqmetrix" %>'>"><%= department.name %></a></td>
            	  </tr>        
               <% } %>
       	    </table>

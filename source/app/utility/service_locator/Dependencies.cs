@@ -28,12 +28,12 @@ namespace app.utility.service_locator
                       container.register<IEnumerable<IProcessOneRequest>>(c => new IProcessOneRequest[]
                       { 
                           new RequestCommand<ViewMainDepartmentRequest>(request => 
-                              request.path.Contains("maindepartment"),c.an<ViewAReport<ViewMainDepartmentRequest,ViewMainDepartmentRequest>>(), new MainDepartmentModelBuilder()),
+                              request.path.Contains("maindepartment"),c.an<ViewAReport<IEnumerable<Department>,ViewMainDepartmentRequest>>(), new MainDepartmentModelBuilder()),
                          
                               new RequestCommand<ViewSubDepartmentsRequest>(
-                              request => request.path.Contains("subdepartment") , c.an<ViewAReport<ViewSubDepartmentsRequest, ViewSubDepartmentsRequest>>(), new SubDepartmentModelBuilder()),
+                              request => request.path.Contains("subdepartment") , c.an<ViewAReport<IEnumerable<Department>, ViewSubDepartmentsRequest>>(), new SubDepartmentModelBuilder()),
                           
-                              new RequestCommand<ViewProductsInDepartmentRequest>(request => request.path.Contains("products"), c.an<ViewAReport<ViewProductsInDepartmentRequest, ViewProductsInDepartmentRequest>>(), new ProductModelBuilder()),
+                              new RequestCommand<ViewProductsInDepartmentRequest>(request => request.path.Contains("products"), c.an<ViewAReport<IEnumerable<Product>, ViewProductsInDepartmentRequest>>(), new ProductModelBuilder()),
                       });
 
                       container.register<IDisplayInformation>(c => new WebFormsDisplayEngine(c.an<ICreateViews>(), c.an<IGetTheCurrentlyExecutingRequest>()));
@@ -50,7 +50,19 @@ namespace app.utility.service_locator
 
 
                       container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
-                      container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<StubPathRegistry>()));
+                      container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<IGetThePathToAViewThatCanDisplay>()));
+
+
+                      container.register<IGetThePathToAViewThatCanDisplay>(c => new StubPathRegistry());
+
+                      container.register<ICreateControllerRequests>(c => new CreateControllerRequest());
+
+
+                      container.register(c => new GetMainDepartmentsQuery(c.an<IFetchStoreInformation>()));
+                      container.register(c => new GetSubDepartmentsQuery(c.an<IFetchStoreInformation>()));
+                      container.register(c => new GetProductsQuery(c.an<IFetchStoreInformation>()));
+
+                      container.register<IFetchStoreInformation>(c => new StubCatalog());
 
                       return container;
                   };

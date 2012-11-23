@@ -7,4 +7,10 @@ namespace app.web.core
       string path { get; set; }
   }
 
+
+    public class RequestDetail :IContainRequestDetails
+    {
+        public string path { get; set; }
+    }
+
 }

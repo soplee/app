@@ -32,52 +32,14 @@ namespace app.web.application.stubs
 
         public IEnumerable<Department> get_the_departments_using(ViewSubDepartmentsRequest request)
         {
-            var idGiven = request.id;
 
-            var booksDepartment = new string[]
-                                     {
-                                        "Business",
-                                        "Dating",
-                                        "Horror",                                         
-                                        "Travel"
-                                     };
-
-            var electronicsDepartment = new string[]
-                                     {
-                                        "Cell Phones",
-                                        "Laptops"
-                                     };
-
-            var fastFoodDepartment = new string[]
-                                     {
-                                        "McDonalds",
-                                        "Subway",
-                                     };
-
-            var footwearDepartment = new string[]
-                                     {
-                                         "Adidas",
-                                         "Aldo",
-                                         "Nike"
-                                     };
-            string[][] subDepartments = new string[][]
-                                             {
-                                               booksDepartment, electronicsDepartment, fastFoodDepartment, footwearDepartment
-
-                                           };
-
-            Department[] departments = new Department[subDepartments.Length];
-            for (int i = 0; i < subDepartments[idGiven].Length; i++)
-            {
-                var department = new Department();
-                department.id = i;
-                department.name = subDepartments[idGiven][i];
-                departments[i] = department;
-            }
-
-            return departments;
-
-            // return Enumerable.Range(1, 5).Select(x => new Department { name = x.ToString("Sub Department 0") });
+            return new List<Department>()
+                       {
+                           new Department() {id = 0, name = "Business",},
+                           new Department() {id = 1, name = "Dating",},
+                           new Department() {id = 2, name = "Horror",},
+                           new Department() {id = 3, name = "Travel"}
+                       };
         }
 
         public IEnumerable<Product> get_the_products_using(ViewProductsInDepartmentRequest inputModel)

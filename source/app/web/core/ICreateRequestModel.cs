@@ -19,7 +19,7 @@ namespace app.web.core
     {
         public ViewSubDepartmentsRequest buildModel(IContainRequestDetails request)
         {
-            return new ViewSubDepartmentsRequest() { id = 12 };
+            return new ViewSubDepartmentsRequest() { id = 1 };
         }
     }
 
@@ -27,7 +27,7 @@ namespace app.web.core
     {
         public ViewProductsInDepartmentRequest buildModel(IContainRequestDetails request)
         {
-            return new ViewProductsInDepartmentRequest() { id = 12 };
+            return new ViewProductsInDepartmentRequest() { id = 1 };
         }
     }
 }
