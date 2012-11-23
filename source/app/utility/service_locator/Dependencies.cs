@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Web;
+using System.Web.Compilation;
+using app.web.application.catalogbrowsing;
 using app.web.core;
+using app.web.core.aspnet;
+using app.web.core.stubs;
 
 namespace app.utility.service_locator
 {
@@ -18,9 +23,16 @@ namespace app.utility.service_locator
 
                       container.register<ICreateTheCommandWhenOneCantBeFound>(c => () => new InvalidCommand());
 
-                      container.register<IEnumerable<IProcessOneRequest>>(c => new[]{ 
-                          new RequestCommand(c.an<IMatchARequest>(),c.an<ISupportAUserFeature>())});
+                      container.register<IEnumerable<IProcessOneRequest>>(c => new[]
+                      { 
+                          new RequestCommand(request => request.GetType() == typeof(ViewMainDepartmentRequest), c.an<ViewAReport<ViewMainDepartmentRequest>>()),
+                          new RequestCommand(request => request.GetType() == typeof(ViewSubDepartmentsRequest), c.an<ViewAReport<ViewSubDepartmentsRequest>>()),
+                          new RequestCommand(request => request.GetType() == typeof(ViewProductsInDepartmentRequest), c.an<ViewAReport<ViewProductsInDepartmentRequest>>()),
+                      });
 
+                      container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
+                      container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<StubPathRegistry>()));
+                      
                       return container;
                   };
 
