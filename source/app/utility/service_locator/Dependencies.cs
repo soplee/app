@@ -33,15 +33,11 @@ namespace app.utility.service_locator
 
                       container.register<IDisplayInformation>(c => new WebFormsDisplayEngine(c.an<ICreateViews>(), c.an<IGetTheCurrentlyExecutingRequest>()));
 
-/*                      container.register(c => new ViewAReport<ViewMainDepartmentRequest>(c.an<IDisplayInformation>(),
-                                                                                    input =>
-                                                                                        
-                                                                                          new StubCatalog().get_the_main_departments
-                                                                                        ));*/
-
-                      //container.register<ViewAReport<ViewMainDepartmentRequest>>(c=> ));
-
-
+//                      container.register(c => new ViewAReport<ViewMainDepartmentRequest>(c.an<IDisplayInformation>(),
+//                                                                                    input =>
+//                                                                                        
+//                                                                                          new StubCatalog().get_the_main_departments
+//                                                                                        ));
 
                       container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
                       container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<StubPathRegistry>()));
