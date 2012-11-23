@@ -25,14 +25,14 @@ namespace app.utility.service_locator
 
                       container.register<IEnumerable<IProcessOneRequest>>(c => new[]
                       { 
-                          new RequestCommand(request => request.GetType() == typeof(ViewMainDepartmentRequest), c.an<ViewAReport<ViewMainDepartmentRequest>>()),
-                          new RequestCommand(request => request.GetType() == typeof(ViewSubDepartmentsRequest), c.an<ViewAReport<ViewSubDepartmentsRequest>>()),
-                          new RequestCommand(request => request.GetType() == typeof(ViewProductsInDepartmentRequest), c.an<ViewAReport<ViewProductsInDepartmentRequest>>()),
+                          new RequestCommand(request => request.path.Contains("maindepartment"),c.an<ViewAReport<ViewMainDepartmentRequest>>()),
+                          new RequestCommand(request => request.path.Contains("subdepartment") , c.an<ViewAReport<ViewSubDepartmentsRequest>>()),
+                          new RequestCommand(request => request.path.Contains("products"), c.an<ViewAReport<ViewProductsInDepartmentRequest>>()),
                       });
 
                       container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
                       container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<StubPathRegistry>()));
-                      
+
                       return container;
                   };
 

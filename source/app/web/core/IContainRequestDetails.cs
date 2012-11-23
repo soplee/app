@@ -2,7 +2,7 @@
 {
   public interface IContainRequestDetails
   {
-  	InputModel map<InputModel>();
+      string path { get; set; }
   }
 
 }

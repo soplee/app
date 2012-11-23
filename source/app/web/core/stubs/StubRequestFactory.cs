@@ -12,10 +12,7 @@ namespace app.web.core.stubs
 
     class StubRequest : IContainRequestDetails
     {
-    	public ModelData map<ModelData>()
-    	{
-    	  return Activator.CreateInstance<ModelData>();
-    	}
+        public string path { get; set; }
     }
   }
 }

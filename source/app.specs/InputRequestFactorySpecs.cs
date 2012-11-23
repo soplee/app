@@ -23,7 +23,7 @@ namespace app.specs
             Establish c = () =>
             {
                 id = 17;
-                path = "department";
+                path = "/department";
             };
 
             public class and_it_is_for_a_sub_department
@@ -31,7 +31,7 @@ namespace app.specs
                 Establish c = () =>
                 {
 
-                    request = new HttpRequest(id + ".iqmetrix", "http://localhost/", "");
+                    request = new HttpRequest(id + ".iqmetrix", "http://localhost/" + path, "");
                     context = new HttpContext(request, new HttpResponse(null));
                 };
 
@@ -41,8 +41,7 @@ namespace app.specs
                 {
 
                     result.ShouldBeOfType<ControllerRequestFactory>();
-                    ((ControllerRequestFactory)result).id.ShouldEqual(id);
-                    ((ControllerRequestFactory)result).path.ShouldEqual(path); 
+                    ((ControllerRequestFactory)result).path.ShouldEqual(path);
                 };
 
                 static IContainRequestDetails result;
