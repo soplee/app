@@ -35,7 +35,7 @@ namespace app.utility.service_locator
                       container.register<IDisplayInformation>(c => new WebFormsDisplayEngine(c.an<ICreateViews>(), c.an<IGetTheCurrentlyExecutingRequest>()));
 
                       container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetMainDepartmentsQuery>().fetch_using(input)));
-                      container.register(c => new ViewAReport<IEnumerable<SubDepartmet>>(c.an<IDisplayInformation>(), input => c.an<GetSubDepartmentsQuery>().fetch_using(input)));
+                      container.register(c => new ViewAReport<IEnumerable<SubDepartment>>(c.an<IDisplayInformation>(), input => c.an<GetSubDepartmentsQuery>().fetch_using(input)));
                       container.register(c => new ViewAReport<IEnumerable<Product>>(c.an<IDisplayInformation>(), input => c.an<GetProductsQuery>().fetch_using(input)));
 
 

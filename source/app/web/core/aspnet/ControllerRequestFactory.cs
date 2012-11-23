@@ -1,7 +1,12 @@
 ﻿namespace app.web.core.aspnet
 {
-    public class ControllerRequestFactory : IContainRequestDetails
+  public class ControllerRequestFactory : IContainRequestDetails
+  {
+    public string path { get; set; }
+
+    public InputModel map<InputModel>()
     {
-        public string path { get; set; }
+      return default(InputModel);
     }
+  }
 }

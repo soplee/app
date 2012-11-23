@@ -30,7 +30,7 @@ namespace app.web.application.stubs
             return departments;
         }
 
-        public IEnumerable<SubDepartmet> get_the_departments_using(ViewSubDepartmentsRequest request)
+        public IEnumerable<SubDepartment> get_the_departments_using(ViewSubDepartmentsRequest request)
         {
             var idGiven = request.id;
 
@@ -66,10 +66,10 @@ namespace app.web.application.stubs
 
                                            };
 
-            SubDepartmet[] departments = new SubDepartmet[subDepartments.Length];
+            SubDepartment[] departments = new SubDepartment[subDepartments.Length];
             for (int i = 0; i < subDepartments[idGiven].Length; i++)
             {
-                var department = new SubDepartmet();
+                var department = new SubDepartment();
                 department.id = i;
                 department.parent = request.id;
                 department.name = subDepartments[idGiven][i];

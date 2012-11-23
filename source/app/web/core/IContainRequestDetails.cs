@@ -3,6 +3,7 @@
   public interface IContainRequestDetails
   {
       string path { get; set; }
+      InputModel map<InputModel>();
   }
 
 }

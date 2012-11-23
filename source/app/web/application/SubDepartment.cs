@@ -1,6 +1,6 @@
 namespace app.web.application
 {
-    public class SubDepartmet
+    public class SubDepartment
     {
         public string name { get; set; }
         public int id { get; set; }
