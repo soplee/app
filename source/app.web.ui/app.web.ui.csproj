@@ -126,6 +126,13 @@
     <Content Include="scripts\jquery-1.3.2.js" />
     <Content Include="views\App.master" />
     <None Include="images\Thumbs.db" />
+    <Content Include="web.config" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\app\app.csproj">
@@ -159,7 +166,7 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>6318</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
