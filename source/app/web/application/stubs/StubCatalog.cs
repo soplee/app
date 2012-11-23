@@ -30,10 +30,10 @@ namespace app.web.application.stubs
             return departments;
         }
 
-        public IEnumerable<Department> get_the_departments_using(ViewSubDepartmentsRequest request)
+        public IEnumerable<SubDepartmet> get_the_departments_using(ViewSubDepartmentsRequest request)
         {
             var idGiven = request.id;
-           
+
             var booksDepartment = new string[]
                                      {
                                         "Business",
@@ -60,17 +60,18 @@ namespace app.web.application.stubs
                                          "Aldo",
                                          "Nike"
                                      };
-             string[][] subDepartments = new string[][]
+            string[][] subDepartments = new string[][]
                                              {
                                                booksDepartment, electronicsDepartment, fastFoodDepartment, footwearDepartment
 
                                            };
 
-            Department[] departments = new Department[subDepartments.Length];
+            SubDepartmet[] departments = new SubDepartmet[subDepartments.Length];
             for (int i = 0; i < subDepartments[idGiven].Length; i++)
             {
-                var department = new Department();
+                var department = new SubDepartmet();
                 department.id = i;
+                department.parent = request.id;
                 department.name = subDepartments[idGiven][i];
                 departments[i] = department;
             }
@@ -124,7 +125,7 @@ namespace app.web.application.stubs
                 return Enumerable.Range(1, 5).Select(x => new Product { name = x.ToString("Product 0") });
             }
             Product[] products = new Product[productsInBooksDepartment[idGiven].Length];
-            for (int i = 0; i < productsInBooksDepartment[idGiven].Length; i++  )
+            for (int i = 0; i < productsInBooksDepartment[idGiven].Length; i++)
             {
                 var product = new Product();
                 product.id = i;
@@ -132,7 +133,7 @@ namespace app.web.application.stubs
                 products[i] = product;
             }
             return products;
-                
+
         }
     }
 }
