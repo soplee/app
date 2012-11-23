@@ -110,6 +110,7 @@
     <Compile Include="web\core\ICreateTheCommandWhenOneCantBeFound.cs" />
     <Compile Include="web\core\IFindCommands.cs" />
     <Compile Include="web\core\IMatchARequest.cs" />
+    <Compile Include="web\core\InvalidCommand.cs" />
     <Compile Include="web\core\IProcessOneRequest.cs" />
     <Compile Include="web\core\IProcessRequests.cs" />
     <Compile Include="web\core\ISupportAUserFeature .cs" />
