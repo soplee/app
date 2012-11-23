@@ -1,16 +1,17 @@
 ﻿using Machine.Specifications;
 using app.web;
+using app.web.application.catalogbrowsing;
 using app.web.core;
 using developwithpassion.specifications.extensions;
 using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
-  [Subject(typeof(RequestCommand))]
+  [Subject(typeof(RequestCommand<>))]
   public class RequestCommandSpecs
   {
     public abstract class concern : Observes<IProcessOneRequest,
-                                      RequestCommand>
+                                      RequestCommand<FakeRequestModel>>
     {
     }
 
@@ -19,6 +20,7 @@ namespace app.specs
       Establish c = () =>
       {
         request = fake.an<IContainRequestDetails>();
+
         depends.on<IMatchARequest>(x =>
         {
           x.ShouldEqual(request);
@@ -41,6 +43,7 @@ namespace app.specs
       Establish c = () =>
       {
         request = fake.an<IContainRequestDetails>();
+        requestModel = fake.an<FakeRequestModel>();
         feature = depends.on<ISupportAUserFeature>();
       };
 
@@ -48,10 +51,13 @@ namespace app.specs
         sut.run(request);
 
       It should_run_the_application_feature = () =>
-        feature.received(x => x.run(request));
+        feature.received(x => x.run(requestModel));
 
       static IContainRequestDetails request;
       static ISupportAUserFeature feature;
+      static FakeRequestModel requestModel;
     }
+
+    public class FakeRequestModel : IRequestModel { }
   }
 }

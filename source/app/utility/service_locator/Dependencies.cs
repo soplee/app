@@ -17,31 +17,31 @@ namespace app.utility.service_locator
                   {
                       var container = new Container();
 
-                      container.register<IProcessRequests>(c =>
-                          new FrontController(c.an<IFindCommands>()));
-
-                      container.register<IFindCommands>(c =>
-                          new CommandRegistry(c.an<IEnumerable<IProcessOneRequest>>(), c.an<ICreateTheCommandWhenOneCantBeFound>()));
-
-                      container.register<ICreateTheCommandWhenOneCantBeFound>(c => () => new InvalidCommand());
-
-                      container.register<IEnumerable<IProcessOneRequest>>(c => new[]
-                      { 
-                          new RequestCommand(request => request.path.Contains("maindepartment"),c.an<ViewAReport<ViewMainDepartmentRequest>>()),
-                          new RequestCommand(request => request.path.Contains("subdepartment") , c.an<ViewAReport<ViewSubDepartmentsRequest>>()),
-                          new RequestCommand(request => request.path.Contains("products"), c.an<ViewAReport<ViewProductsInDepartmentRequest>>()),
-                      });
-
-                      container.register<IDisplayInformation>(c => new WebFormsDisplayEngine(c.an<ICreateViews>(), c.an<IGetTheCurrentlyExecutingRequest>()));
-
-                      container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetMainDepartmentsQuery>().fetch_using(input)));
-                      container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetSubDepartmentsQuery>().fetch_using(input)));
-                      container.register(c => new ViewAReport<IEnumerable<Product>>(c.an<IDisplayInformation>(), input => c.an<GetProductsQuery>().fetch_using(input)));
-
-
-                      container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
-                      container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<StubPathRegistry>()));
-
+//                      container.register<IProcessRequests>(c =>
+//                          new FrontController(c.an<IFindCommands>()));
+//
+//                      container.register<IFindCommands>(c =>
+//                          new CommandRegistry(c.an<IEnumerable<IProcessOneRequest>>(), c.an<ICreateTheCommandWhenOneCantBeFound>()));
+//
+//                      container.register<ICreateTheCommandWhenOneCantBeFound>(c => () => new InvalidCommand());
+//
+//                      container.register<IEnumerable<IProcessOneRequest>>(c => new[]
+//                      { 
+//                          new RequestCommand(request => request.path.Contains("maindepartment"),c.an<ViewAReport<ViewMainDepartmentRequest>>()),
+//                          new RequestCommand(request => request.path.Contains("subdepartment") , c.an<ViewAReport<ViewSubDepartmentsRequest>>()),
+//                          new RequestCommand(request => request.path.Contains("products"), c.an<ViewAReport<ViewProductsInDepartmentRequest>>()),
+//                      });
+//
+//                      container.register<IDisplayInformation>(c => new WebFormsDisplayEngine(c.an<ICreateViews>(), c.an<IGetTheCurrentlyExecutingRequest>()));
+//
+//                      container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetMainDepartmentsQuery>().fetch_using(input)));
+//                      container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetSubDepartmentsQuery>().fetch_using(input)));
+//                      container.register(c => new ViewAReport<IEnumerable<Product>>(c.an<IDisplayInformation>(), input => c.an<GetProductsQuery>().fetch_using(input)));
+//
+//
+//                      container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
+//                      container.register<ICreateViews>(c => new ViewFactory(BuildManager.CreateInstanceFromVirtualPath, container.an<StubPathRegistry>()));
+//
                       return container;
                   };
 

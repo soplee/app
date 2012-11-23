@@ -6,11 +6,11 @@ using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
-  [Subject(typeof(ViewAReport<>))]
+  [Subject(typeof(ViewAReport<,>))]
   public class ViewAModelSpecs
   {
     public abstract class concern : Observes<ISupportAUserFeature,
-                                      ViewAReport<string>>
+                                      ViewAReport<string, FakeRequestModel>>
     {
     }
 
@@ -18,9 +18,9 @@ namespace app.specs
     {
       Establish c = () =>
       {
-        request = fake.an<IContainRequestDetails>();
+        request = fake.an<FakeRequestModel>();
         model = "Test";
-        depends.on<IGetPresentationDataFromARequest<string>>(x =>
+        depends.on<IGetPresentationDataFromARequestModel<string>>(x =>
         {
           x.ShouldEqual(request);
           return model;
@@ -35,9 +35,12 @@ namespace app.specs
       It should_display_the_model_retrieved_by_a_query =
         () => display_engine.received(x => x.display(model));
 
-      static IContainRequestDetails request;
+      static FakeRequestModel request;
       static IDisplayInformation display_engine;
       static string model;
     }
+
+    public class FakeRequestModel : IRequestModel {}
   }
+
 }

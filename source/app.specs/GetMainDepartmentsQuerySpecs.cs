@@ -11,7 +11,7 @@ namespace app.specs
   [Subject(typeof(GetMainDepartmentsQuery))]
   public class GetMainDepartmentsQuerySpecs
   {
-    public abstract class concern : Observes<IFetchAReport<IEnumerable<Department>, ViewMainDepartmentRequest>>
+    public abstract class concern : Observes<IFetchAReport<IEnumerable<Department>, ViewMainDepartmentRequest>, GetMainDepartmentsQuery>
     {
     }
 
