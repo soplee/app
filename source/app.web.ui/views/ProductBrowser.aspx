@@ -23,7 +23,7 @@ CodeFile="ProductBrowser.aspx.cs" MasterPageFile="App.master" %>
                   %>
         <tr class="nonShadedRow">                    
             <td class="ListItem">                    
-                <a href='<%= product.id + ".iqmetrix" %>'><%= product.name %></a>
+                <a href='products/<%= product.id + ".iqmetrix" %>'><%= product.name %></a>
             </td>
             <td>Product Description</td>
             <td><input type="text" class="normalTextBox" value="1" /></td>

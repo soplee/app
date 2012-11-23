@@ -87,6 +87,8 @@
     <Compile Include="web\core\aspnet\IDisplayAModel.cs" />
     <Compile Include="web\core\aspnet\IGetTheCurrentlyExecutingRequest.cs" />
     <Compile Include="web\core\aspnet\IGetViewTypeForAModel.cs" />
+    <Compile Include="web\core\aspnet\ControllerRequestFactory.cs" />
+    <Compile Include="web\core\aspnet\InputRequestFactory.cs" />
     <Compile Include="web\core\aspnet\SimpleView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
