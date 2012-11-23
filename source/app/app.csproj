@@ -121,7 +121,6 @@
     <Compile Include="web\core\ISupportAUserFeature .cs" />
     <Compile Include="web\core\RequestCommand.cs" />
     <Compile Include="web\core\stubs\StubPathRegistry.cs" />
-    <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

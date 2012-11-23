@@ -1,7 +1,10 @@
-﻿namespace app.web.core
+﻿using app.web.application.catalogbrowsing;
+
+namespace app.web.core
 {
-  public interface IProcessOneRequest : ISupportAUserFeature
-  {
-    bool can_process(IContainRequestDetails request);
-  }
+    public interface IProcessOneRequest
+    {
+        bool can_process(IContainRequestDetails request);
+        void run(IContainRequestDetails request);
+    }
 }

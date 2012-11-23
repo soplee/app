@@ -2,20 +2,20 @@
 
 namespace app.web.application.catalogbrowsing
 {
-  public class ViewAReport<PresentationData> : ISupportAUserFeature
-  {
-    IDisplayInformation display_engine;
-    IGetPresentationDataFromARequest<PresentationData> query;
-
-    public ViewAReport(IDisplayInformation display_engine, IGetPresentationDataFromARequest<PresentationData> query)
+    public class ViewAReport<PresentationData, RequestModel> : ISupportAUserFeature where RequestModel : IRequestModel
     {
-      this.display_engine = display_engine;
-      this.query = query;
-    }
+        IDisplayInformation display_engine;
+        IGetPresentationDataFromARequestModel<PresentationData> query;
 
-    public void run(IContainRequestDetails request)
-    {
-      display_engine.display(query(request));
+        public ViewAReport(IDisplayInformation display_engine, IGetPresentationDataFromARequestModel<PresentationData> query)
+        {
+            this.display_engine = display_engine;
+            this.query = query;
+        }
+
+        public void run<RequestModel>(RequestModel request) where RequestModel : IRequestModel
+        {
+            display_engine.display(query(request));
+        }
     }
-  }
 }

@@ -4,20 +4,18 @@ using app.web.application.catalogbrowsing;
 
 namespace app.web.core
 {
-    public class GetSubDepartmentsQuery : IFetchAReport<IEnumerable<Department>>
+    public class GetSubDepartmentsQuery : IFetchAReport<IEnumerable<Department>, ViewSubDepartmentsRequest>
     {
         private readonly IFetchStoreInformation _storeInformation;
-        private readonly ICreateRequestModel<ViewSubDepartmentsRequest> _createRequestModel;
 
-        public GetSubDepartmentsQuery(IFetchStoreInformation storeInformation, ICreateRequestModel<ViewSubDepartmentsRequest> createRequestModel)
+        public GetSubDepartmentsQuery(IFetchStoreInformation storeInformation)
         {
             _storeInformation = storeInformation;
-            _createRequestModel = createRequestModel;
         }
 
-        public IEnumerable<Department> fetch_using(IContainRequestDetails request)
+        public IEnumerable<Department> fetch_using(ViewSubDepartmentsRequest requestModel)
         {
-            return _storeInformation.get_the_departments_using(_createRequestModel.buildModel(request));
+            return _storeInformation.get_the_departments_using(requestModel);
         }
     }
 }
