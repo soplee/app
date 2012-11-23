@@ -14,44 +14,9 @@ namespace app.web.core
             _storeInformation = storeInformation;
         }
 
-        public IEnumerable<Department> fetch_using(IContainRequestDetails request)
+        public IEnumerable<Department> fetch_using(IContainRequestDetails details)
         {
             return _storeInformation.get_the_main_departments();
-        }
-    }
-
-    public class GetSubDepartmentsQuery : IFetchAReport<IEnumerable<Department>>
-    {
-        private readonly IFetchStoreInformation _storeInformation;
-        private readonly ICreateRequestModel<ViewSubDepartmentsRequest> _createRequestModel;
-
-        public GetSubDepartmentsQuery(IFetchStoreInformation storeInformation, ICreateRequestModel<ViewSubDepartmentsRequest> createRequestModel)
-        {
-            _storeInformation = storeInformation;
-            _createRequestModel = createRequestModel;
-        }
-
-        public IEnumerable<Department> fetch_using(IContainRequestDetails request)
-        {
-            return _storeInformation.get_the_departments_using(_createRequestModel.buildModel(request));
-        }
-    }
-
-
-    public class GetProductsQuery : IFetchAReport<IEnumerable<Product>>
-    {
-        private readonly IFetchStoreInformation _storeInformation;
-        private readonly ICreateRequestModel<ViewProductsInDepartmentRequest> _createRequestModel;
-
-        public GetProductsQuery(IFetchStoreInformation storeInformation, ICreateRequestModel<ViewProductsInDepartmentRequest> createRequestModel)
-        {
-            _storeInformation = storeInformation;
-            _createRequestModel = createRequestModel;
-        }
-
-        public IEnumerable<Product> fetch_using(IContainRequestDetails request)
-        {
-            return _storeInformation.get_the_products_using(_createRequestModel.buildModel(request));
         }
     }
 }

@@ -94,6 +94,8 @@
     <Compile Include="web\core\aspnet\ViewFactory.cs" />
     <Compile Include="web\core\aspnet\WebFormsDisplayEngine.cs" />
     <Compile Include="web\core\GetMainDepartmentsQuery.cs" />
+    <Compile Include="web\core\GetProductsQuery.cs" />
+    <Compile Include="web\core\GetSubDepartmentsQuery.cs" />
     <Compile Include="web\core\ICreateRequestModel.cs" />
     <Compile Include="web\core\IDisplayInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\IGetPresentationDataFromARequest.cs" />

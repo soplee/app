@@ -26,7 +26,7 @@ namespace app.web.core.stubs
 
 	  public class GetTheMainDepartments : IFetchAReport<IEnumerable<Department>>
 	  {
-	    public IEnumerable<Department> fetch_using(IContainRequestDetails request)
+	    public IEnumerable<Department> fetch_using(IContainRequestDetails details)
 	    {
 	      return new StubCatalog().get_the_main_departments();
 	    }

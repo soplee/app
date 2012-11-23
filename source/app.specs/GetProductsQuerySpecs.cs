@@ -8,30 +8,34 @@ using developwithpassion.specifications.extensions;
 
 namespace app.specs
 {
-  [Subject(typeof(GetMainDepartmentsQuery))]
-  public class GetMainDepartmentsQuerySpecs
+  [Subject(typeof(GetProductsQuery))]
+  public class GetProductsInDepartmentQuerySpecs
   {
-    public abstract class concern : Observes<IFetchAReport<IEnumerable<Department>>, GetMainDepartmentsQuery>
+    public abstract class concern : Observes<IFetchAReport<IEnumerable<Product>>, GetProductsQuery>
     {
     }
 
-    public class when_fetching_main_departments : concern
+    public class when_fetching_products : concern
     {
       Establish c = () =>
       {
+        request = fake.an<ViewProductsInDepartmentRequest>();
+
         details = fake.an<IContainRequestDetails>();
+
         query = depends.on<IFetchStoreInformation>();
       };
 
       Because of = () =>
         result = sut.fetch_using(details);
 
-      It should_query_store_info_for_main_departments = () =>
-        query.received(x => x.get_the_main_departments());
+      It should_query_store_info_for_products_with_request = () =>
+        query.received(x => x.get_the_products_using(request));
 
       static IContainRequestDetails details;
-      static IEnumerable<Department> result;
+      static IEnumerable<Product> result;
       static IFetchStoreInformation query;
+      static ViewProductsInDepartmentRequest request;
     }
   }
 }
