@@ -3,9 +3,9 @@ using app.web.application.catalogbrowsing;
 
 namespace app.web.core
 {
-    public interface ISupportAUserFeature
+    public interface ISupportAUserFeature<TRequestModel> where TRequestModel : IRequestModel
     {
-        void run<TRequestModel>(TRequestModel request) where TRequestModel : IRequestModel;
+        void run(TRequestModel request);
     }
 
     public class ChainedBehaviour : IEnrichAnInvocationPipeline

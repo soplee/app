@@ -5,10 +5,10 @@ namespace app.web.core
     public class RequestCommand<TRequestModel> : IProcessOneRequest where TRequestModel : IRequestModel
     {
         private IMatchARequest request_specification;
-        private ISupportAUserFeature feature;
+        private ISupportAUserFeature<TRequestModel> feature;
         private readonly ICreateRequestModel<TRequestModel> _modelBuilder;
 
-        public RequestCommand(IMatchARequest request_specification, ISupportAUserFeature feature, ICreateRequestModel<TRequestModel> modelBuilder)
+        public RequestCommand(IMatchARequest request_specification, ISupportAUserFeature<TRequestModel> feature, ICreateRequestModel<TRequestModel> modelBuilder)
         {
             this.request_specification = request_specification;
             this.feature = feature;

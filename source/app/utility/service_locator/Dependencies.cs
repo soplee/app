@@ -25,18 +25,28 @@ namespace app.utility.service_locator
 
                       container.register<ICreateTheCommandWhenOneCantBeFound>(c => () => new InvalidCommand());
 
-                      container.register<IEnumerable<IProcessOneRequest>>(c => new[]
+                      container.register<IEnumerable<IProcessOneRequest>>(c => new IProcessOneRequest[]
                       { 
-                          new RequestCommand(request => request.path.Contains("maindepartment"),c.an<ViewAReport<ViewMainDepartmentRequest>>()),
-                          new RequestCommand(request => request.path.Contains("subdepartment") , c.an<ViewAReport<ViewSubDepartmentsRequest>>()),
-                          new RequestCommand(request => request.path.Contains("products"), c.an<ViewAReport<ViewProductsInDepartmentRequest>>()),
+                          new RequestCommand<ViewMainDepartmentRequest>(request => 
+                              request.path.Contains("maindepartment"),c.an<ViewAReport<ViewMainDepartmentRequest,ViewMainDepartmentRequest>>(), new MainDepartmentModelBuilder()),
+                         
+                              new RequestCommand<ViewSubDepartmentsRequest>(
+                              request => request.path.Contains("subdepartment") , c.an<ViewAReport<ViewSubDepartmentsRequest, ViewSubDepartmentsRequest>>(), new SubDepartmentModelBuilder()),
+                          
+                              new RequestCommand<ViewProductsInDepartmentRequest>(request => request.path.Contains("products"), c.an<ViewAReport<ViewProductsInDepartmentRequest, ViewProductsInDepartmentRequest>>(), new ProductModelBuilder()),
                       });
 
                       container.register<IDisplayInformation>(c => new WebFormsDisplayEngine(c.an<ICreateViews>(), c.an<IGetTheCurrentlyExecutingRequest>()));
 
-                      container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetMainDepartmentsQuery>().fetch_using(input)));
-                      container.register(c => new ViewAReport<IEnumerable<Department>>(c.an<IDisplayInformation>(), input => c.an<GetSubDepartmentsQuery>().fetch_using(input)));
-                      container.register(c => new ViewAReport<IEnumerable<Product>>(c.an<IDisplayInformation>(), input => c.an<GetProductsQuery>().fetch_using(input)));
+                      container.register(c =>
+                            new ViewAReport<IEnumerable<Department>, ViewMainDepartmentRequest>(c.an<IDisplayInformation>(), input => c.an<GetMainDepartmentsQuery>().fetch_using(input)));
+
+                      container.register(c =>
+                            new ViewAReport<IEnumerable<Department>, ViewSubDepartmentsRequest>(c.an<IDisplayInformation>(), input => c.an<GetSubDepartmentsQuery>().fetch_using(input)));
+
+                      container.register(c =>
+                            new ViewAReport<IEnumerable<Product>, ViewProductsInDepartmentRequest>(c.an<IDisplayInformation>(), input => c.an<GetProductsQuery>().fetch_using(input)));
+
 
 
                       container.register<IGetTheCurrentlyExecutingRequest>(c => () => HttpContext.Current);
