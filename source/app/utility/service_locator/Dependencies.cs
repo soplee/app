@@ -6,16 +6,7 @@ namespace app.utility.service_locator
 {
     public class Dependencies
     {
-        public static IResolveTheContainerConfiguredAtStartup resolution = DefaultRegistration;
-
-
-        public static IFindDependencies fetch
-        {
-            get { return resolution(); }
-        }
-
-
-        private static IResolveTheContainerConfiguredAtStartup DefaultRegistration = () =>
+        public static IResolveTheContainerConfiguredAtStartup resolution = () =>
                   {
                       var container = new Container();
 
@@ -32,5 +23,11 @@ namespace app.utility.service_locator
 
                       return container;
                   };
+
+
+        public static IFindDependencies fetch
+        {
+            get { return resolution(); }
+        }
     }
 }
