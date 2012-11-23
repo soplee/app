@@ -4,6 +4,6 @@ namespace app.web.application.catalogbrowsing
 {
 	public class ViewSubDepartmentsRequest
 	{
-		public int departmentId { get; set; }
+		public int id { get; set; }
 	}
 }

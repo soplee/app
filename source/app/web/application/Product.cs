@@ -4,5 +4,6 @@ namespace app.web.application
   {
     public int id;
     public string name { get; set; }
+    public int id { get; set; }
   }
 }
