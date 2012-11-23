@@ -45,6 +45,9 @@ namespace app.specs
         request = fake.an<IContainRequestDetails>();
         requestModel = fake.an<FakeRequestModel>();
         feature = depends.on<ISupportAUserFeature>();
+
+        model_builder = depends.on<ICreateRequestModel<FakeRequestModel>>();
+        model_builder.setup(x => x.buildModel(request)).Return(requestModel);
       };
 
       Because b = () =>
@@ -56,6 +59,7 @@ namespace app.specs
       static IContainRequestDetails request;
       static ISupportAUserFeature feature;
       static FakeRequestModel requestModel;
+      static ICreateRequestModel<FakeRequestModel> model_builder;
     }
 
     public class FakeRequestModel : IRequestModel { }
