@@ -10,46 +10,48 @@ using developwithpassion.specifications.rhinomocks;
 
 namespace app.specs
 {
-  [Subject(typeof(InputRequestFactory))]
-  public class InputRequestFactorySpecs 
-  {
-    public abstract class concern : Observes<ICreateControllerRequests,
-                                      InputRequestFactory>
+    [Subject(typeof(InputRequestFactory))]
+    public class InputRequestFactorySpecs
     {
-    }
-
-    public class when_creating_a_request : concern
-    {
-      Establish c = () =>
-      {
-        id = 17;
-        path = "department";
-      };
-
-      public class and_it_is_for_a_sub_department
-      {
-        Establish c = () =>
+        public abstract class concern : Observes<ICreateControllerRequests,
+                                          InputRequestFactory>
         {
-          request = new HttpRequest(id + ".iqmetrix", path, "");
-          context = new HttpContext(request, null);
-        };
+        }
 
-        Because of = () =>
-          sut.create_a_controller_request_from(context);
-
-        It should_return_a_all_request_data = () =>
+        public class when_creating_a_request : concern
         {
-          result.path.ShouldEqual(path);
-          result.id.ShouldEqual(id);
-        };
+            Establish c = () =>
+            {
+                id = 17;
+                path = "department";
+            };
 
-        static ControllerRequestFactory result;
-        static HttpContext context;
-        static HttpRequest request;
-      }
+            public class and_it_is_for_a_sub_department
+            {
+                Establish c = () =>
+                {
 
-      static string path;
-      static int id;
+                    request = new HttpRequest(id + ".iqmetrix", "http://localhost/", "");
+                    context = new HttpContext(request, new HttpResponse(null));
+                };
+
+                Because of = () => result = sut.create_a_controller_request_from(context);
+
+                It should_return_a_all_request_data = () =>
+                {
+
+                    result.ShouldBeOfType<ControllerRequestFactory>();
+                    ((ControllerRequestFactory)result).id.ShouldEqual(id);
+                    ((ControllerRequestFactory)result).path.ShouldEqual(path); 
+                };
+
+                static IContainRequestDetails result;
+                static HttpContext context;
+                static HttpRequest request;
+            }
+
+            static string path;
+            static int id;
+        }
     }
-  }
 }
