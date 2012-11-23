@@ -4,6 +4,6 @@ namespace app.web.application.catalogbrowsing
 {
 	public class ViewSubDepartmentsRequest
 	{
-		public IEnumerable<Department> departments { get; set; }
+		public int id { get; set; }
 	}
 }
