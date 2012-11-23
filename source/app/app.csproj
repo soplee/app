@@ -82,20 +82,19 @@
     <Compile Include="utility\service_locator\Dependencies.cs" />
     <Compile Include="utility\service_locator\IFindDependencies .cs" />
     <Compile Include="utility\service_locator\IResolveTheContainerConfiguredAtStartup.cs" />
-    <Compile Include="web\application\SubDepartmet.cs" />
+    <Compile Include="web\application\catalogbrowsing\IRequestModel.cs" />
     <Compile Include="web\core\aspnet\ICreateAspxPageInstances.cs" />
     <Compile Include="web\core\aspnet\ICreateViews.cs" />
     <Compile Include="web\core\aspnet\IDisplayAModel.cs" />
     <Compile Include="web\core\aspnet\IGetTheCurrentlyExecutingRequest.cs" />
     <Compile Include="web\core\aspnet\IGetViewTypeForAModel.cs" />
-    <Compile Include="web\core\aspnet\ControllerRequestFactory.cs" />
-    <Compile Include="web\core\aspnet\InputRequestFactory.cs" />
     <Compile Include="web\core\aspnet\SimpleView.cs">
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="web\core\aspnet\ViewFactory.cs" />
     <Compile Include="web\core\aspnet\WebFormsDisplayEngine.cs" />
     <Compile Include="web\core\GetMainDepartmentsQuery.cs" />
+    <Compile Include="web\core\ICreateRequestModel.cs" />
     <Compile Include="web\core\IDisplayInformation.cs" />
     <Compile Include="web\application\catalogbrowsing\IGetPresentationDataFromARequest.cs" />
     <Compile Include="web\application\catalogbrowsing\ViewAReport.cs" />
@@ -120,7 +119,6 @@
     <Compile Include="web\core\ISupportAUserFeature .cs" />
     <Compile Include="web\core\RequestCommand.cs" />
     <Compile Include="web\core\stubs\StubPathRegistry.cs" />
-    <Compile Include="web\core\stubs\StubRequestFactory.cs" />
     <Compile Include="web\core\stubs\StubSetOfCommands.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

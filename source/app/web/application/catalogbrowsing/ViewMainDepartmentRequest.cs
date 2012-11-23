@@ -1,7 +1,8 @@
 ﻿namespace app.web.application.catalogbrowsing
 {
-	public class ViewMainDepartmentRequest
+    public class ViewMainDepartmentRequest :IRequestModel
 	{
-		public Department department { get; set; }
 	}
+
+
 }

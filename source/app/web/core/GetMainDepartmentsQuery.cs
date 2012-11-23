@@ -20,18 +20,20 @@ namespace app.web.core
         }
     }
 
-    public class GetSubDepartmentsQuery : IFetchAReport<IEnumerable<SubDepartmet>>
+    public class GetSubDepartmentsQuery : IFetchAReport<IEnumerable<Department>>
     {
         private readonly IFetchStoreInformation _storeInformation;
+        private readonly ICreateRequestModel<ViewSubDepartmentsRequest> _createRequestModel;
 
-        public GetSubDepartmentsQuery(IFetchStoreInformation storeInformation)
+        public GetSubDepartmentsQuery(IFetchStoreInformation storeInformation, ICreateRequestModel<ViewSubDepartmentsRequest> createRequestModel)
         {
             _storeInformation = storeInformation;
+            _createRequestModel = createRequestModel;
         }
 
-        public IEnumerable<SubDepartmet> fetch_using(IContainRequestDetails request)
+        public IEnumerable<Department> fetch_using(IContainRequestDetails request)
         {
-            return _storeInformation.get_the_departments_using((ViewSubDepartmentsRequest)request);
+            return _storeInformation.get_the_departments_using(_createRequestModel.buildModel(request));
         }
     }
 
@@ -39,15 +41,17 @@ namespace app.web.core
     public class GetProductsQuery : IFetchAReport<IEnumerable<Product>>
     {
         private readonly IFetchStoreInformation _storeInformation;
+        private readonly ICreateRequestModel<ViewProductsInDepartmentRequest> _createRequestModel;
 
-        public GetProductsQuery(IFetchStoreInformation storeInformation)
+        public GetProductsQuery(IFetchStoreInformation storeInformation, ICreateRequestModel<ViewProductsInDepartmentRequest> createRequestModel)
         {
             _storeInformation = storeInformation;
+            _createRequestModel = createRequestModel;
         }
 
         public IEnumerable<Product> fetch_using(IContainRequestDetails request)
         {
-            return _storeInformation.get_the_products_using((ViewProductsInDepartmentRequest)request);
+            return _storeInformation.get_the_products_using(_createRequestModel.buildModel(request));
         }
     }
 }

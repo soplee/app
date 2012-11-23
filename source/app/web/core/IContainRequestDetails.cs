@@ -1,8 +1,11 @@
-﻿namespace app.web.core
+﻿using app.web.application.catalogbrowsing;
+
+namespace app.web.core
 {
-  public interface IContainRequestDetails
-  {
-      string path { get; set; }
-  }
+    public interface IContainRequestDetails
+    {
+        string path { get; set; }
+        InputModel map<InputModel>() where InputModel : class ,IRequestModel;
+    }
 
 }

@@ -120,7 +120,6 @@
     <Compile Include="DependenciesSpecs.cs" />
     <Compile Include="FrontControllerSpecs.cs" />
     <Compile Include="GetMainDepartmentsQuerySpecs.cs" />
-    <Compile Include="InputRequestFactorySpecs.cs" />
     <Compile Include="RequestCommandSpecs.cs" />
     <Compile Include="utility\ObjectFactory.cs" />
     <Compile Include="ViewAModelSpecs.cs" />
