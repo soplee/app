@@ -11,7 +11,7 @@ namespace app.specs
   [Subject(typeof(GetProductsQuery))]
   public class GetProductsInDepartmentQuerySpecs
   {
-    public abstract class concern : Observes<IFetchAReport<IEnumerable<Product>>, GetProductsQuery>
+    public abstract class concern : Observes<IFetchAReport<IEnumerable<Product>, ViewProductsInDepartmentRequest>>
     {
     }
 
@@ -21,19 +21,15 @@ namespace app.specs
       {
         request = fake.an<ViewProductsInDepartmentRequest>();
 
-        details = fake.an<IContainRequestDetails>();
-
         query = depends.on<IFetchStoreInformation>();
       };
 
       Because of = () =>
-        result = sut.fetch_using(details);
+        sut.fetch_using(request);
 
       It should_query_store_info_for_products_with_request = () =>
         query.received(x => x.get_the_products_using(request));
 
-      static IContainRequestDetails details;
-      static IEnumerable<Product> result;
       static IFetchStoreInformation query;
       static ViewProductsInDepartmentRequest request;
     }

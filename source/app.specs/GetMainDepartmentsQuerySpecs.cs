@@ -11,7 +11,7 @@ namespace app.specs
   [Subject(typeof(GetMainDepartmentsQuery))]
   public class GetMainDepartmentsQuerySpecs
   {
-    public abstract class concern : Observes<IFetchAReport<IEnumerable<Department>>, GetMainDepartmentsQuery>
+    public abstract class concern : Observes<IFetchAReport<IEnumerable<Department>, ViewMainDepartmentRequest>>
     {
     }
 
@@ -19,17 +19,17 @@ namespace app.specs
     {
       Establish c = () =>
       {
-        details = fake.an<IContainRequestDetails>();
+        request = fake.an<ViewMainDepartmentRequest>();
         query = depends.on<IFetchStoreInformation>();
       };
 
       Because of = () =>
-        result = sut.fetch_using(details);
+        result = sut.fetch_using(request);
 
       It should_query_store_info_for_main_departments = () =>
         query.received(x => x.get_the_main_departments());
 
-      static IContainRequestDetails details;
+      static ViewMainDepartmentRequest request;
       static IEnumerable<Department> result;
       static IFetchStoreInformation query;
     }
